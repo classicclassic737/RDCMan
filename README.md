@@ -3,7 +3,7 @@
 [![Windows](https://img.shields.io/badge/Platform-Windows%2011%2F10%2F8%2F7-0078D6?style=for-the-badge&logo=windows)]()
 [![Server](https://img.shields.io/badge/Server-2022%2F2019%2F2016-0078D6?style=for-the-badge&logo=windows)]()
 [![Version](https://img.shields.io/badge/Version-3.1-green?style=for-the-badge)]()
-## Updated May 2025
+## Updated: May 12, 2025
 
 
 ## 📥 Download
