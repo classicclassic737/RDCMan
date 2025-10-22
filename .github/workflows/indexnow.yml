@@ -1,0 +1,38 @@
+     name: IndexNow Submission
+
+     on:
+       push:
+         branches: [main, master]
+       release:
+         types: [published]
+       workflow_dispatch:
+
+     jobs:
+       submit:
+         runs-on: ubuntu-latest
+         steps:
+           - name: Checkout
+             uses: actions/checkout@v4
+
+           - name: Submit to IndexNow
+             env:
+               INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
+             run: |
+               # URL репозитория
+               REPO_URL="https://github.com/${{ github.repository }}"
+
+               # Отправка в Bing/Yandex через IndexNow
+               curl -X POST "https://api.indexnow.org/indexnow" \
+                 -H "Content-Type: application/json" \
+                 -d '{
+                   "host": "github.com",
+                   "key": "'"$INDEXNOW_KEY"'",
+                   "keyLocation": "https://'"${{ github.repository_owner }}"'.github.io/'"$INDEXNOW_KEY"'.txt",
+                   "urlList": [
+                     "'"$REPO_URL"'",
+                     "'"$REPO_URL"'/releases",
+                     "'"$REPO_URL"'/blob/main/README.md"
+                   ]
+                 }'
+
+               echo "✅ IndexNow submission completed"
